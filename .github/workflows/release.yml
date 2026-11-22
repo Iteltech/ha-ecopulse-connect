@@ -13,7 +13,7 @@ jobs:
   zip:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Version du manifest = tag
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
@@ -21,6 +21,7 @@ jobs:
           mv m.json custom_components/ecopulse_connect/manifest.json
       - name: Zip
         run: cd custom_components/ecopulse_connect && zip -r ../../ecopulse_connect.zip .
-      - uses: softprops/action-gh-release@v2
-        with:
-          files: ecopulse_connect.zip
+      - name: Joindre le zip à la release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$GITHUB_REF_NAME" ecopulse_connect.zip --clobber

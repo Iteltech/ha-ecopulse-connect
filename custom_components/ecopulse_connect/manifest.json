@@ -6,6 +6,9 @@
     "cloud",
     "hassio"
   ],
+  "categories": [
+    "computers_network.monitoring"
+  ],
   "codeowners": [
     "@iteltech"
   ],
