@@ -1,0 +1,62 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "EcoPulse Connect",
+        "description": "Connect this Home Assistant to the EcoPulse maintenance service. Use the token shown once when the site was created in the EcoPulse dashboard.",
+        "data": {
+          "url": "Server URL",
+          "token": "Site token"
+        },
+        "data_description": {
+          "url": "Leave the default unless EcoPulse gave you another address.",
+          "token": "Provided by EcoPulse for this site."
+        }
+      },
+      "reconfigure": {
+        "title": "EcoPulse Connect",
+        "description": "Update the server address or the site token (for example after regenerating it).",
+        "data": {
+          "url": "Server URL",
+          "token": "Site token"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot reach the EcoPulse server.",
+      "invalid_auth": "The token was refused by the server.",
+      "https_required": "The address must start with https://"
+    },
+    "abort": {
+      "already_configured": "EcoPulse Connect is already configured.",
+      "reconfigure_successful": "Configuration updated."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "last_heartbeat": {
+        "name": "Last heartbeat"
+      },
+      "last_command": {
+        "name": "Last command",
+        "state": {
+          "received": "Received",
+          "started": "Running",
+          "done": "Done",
+          "failed": "Failed",
+          "rejected": "Rejected"
+        }
+      }
+    },
+    "binary_sensor": {
+      "server": {
+        "name": "Server"
+      }
+    },
+    "button": {
+      "send_now": {
+        "name": "Send telemetry now"
+      }
+    }
+  }
+}

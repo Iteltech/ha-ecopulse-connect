@@ -1,0 +1,20 @@
+{
+  "domain": "ecopulse_connect",
+  "name": "EcoPulse Connect",
+  "after_dependencies": [
+    "backup",
+    "cloud",
+    "hassio"
+  ],
+  "codeowners": [
+    "@iteltech"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/iteltech/ha-ecopulse-connect",
+  "integration_type": "service",
+  "iot_class": "cloud_push",
+  "issue_tracker": "https://github.com/iteltech/ha-ecopulse-connect/issues",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "0.1.0"
+}

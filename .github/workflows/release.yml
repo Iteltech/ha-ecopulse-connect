@@ -1,0 +1,26 @@
+name: Release
+
+# Publier une release GitHub (tag vX.Y.Z) : la version du manifest est alignée sur le tag
+# et un zip est joint. HACS propose alors la mise à jour aux sites clients.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Version du manifest = tag
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          jq --arg v "$VERSION" '.version = $v' custom_components/ecopulse_connect/manifest.json > m.json
+          mv m.json custom_components/ecopulse_connect/manifest.json
+      - name: Zip
+        run: cd custom_components/ecopulse_connect && zip -r ../../ecopulse_connect.zip .
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: ecopulse_connect.zip

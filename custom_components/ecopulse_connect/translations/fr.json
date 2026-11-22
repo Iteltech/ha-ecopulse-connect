@@ -1,0 +1,62 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "EcoPulse Connect",
+        "description": "Relie ce Home Assistant au service de maintenance EcoPulse. Utilisez le token affiché une seule fois à la création du site dans le tableau de bord EcoPulse.",
+        "data": {
+          "url": "URL du serveur",
+          "token": "Token du site"
+        },
+        "data_description": {
+          "url": "Laissez la valeur par défaut, sauf si EcoPulse vous a donné une autre adresse.",
+          "token": "Fourni par EcoPulse pour ce site."
+        }
+      },
+      "reconfigure": {
+        "title": "EcoPulse Connect",
+        "description": "Modifier l'adresse du serveur ou le token du site (par exemple après l'avoir régénéré).",
+        "data": {
+          "url": "URL du serveur",
+          "token": "Token du site"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Impossible de joindre le serveur EcoPulse.",
+      "invalid_auth": "Le token a été refusé par le serveur.",
+      "https_required": "L'adresse doit commencer par https://"
+    },
+    "abort": {
+      "already_configured": "EcoPulse Connect est déjà configuré.",
+      "reconfigure_successful": "Configuration mise à jour."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "last_heartbeat": {
+        "name": "Dernier heartbeat"
+      },
+      "last_command": {
+        "name": "Dernier ordre",
+        "state": {
+          "received": "Reçu",
+          "started": "En cours",
+          "done": "Terminé",
+          "failed": "Échec",
+          "rejected": "Refusé"
+        }
+      }
+    },
+    "binary_sensor": {
+      "server": {
+        "name": "Serveur"
+      }
+    },
+    "button": {
+      "send_now": {
+        "name": "Envoyer la télémétrie"
+      }
+    }
+  }
+}
