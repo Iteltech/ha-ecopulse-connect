@@ -66,7 +66,7 @@ async def test_setup_sends_heartbeat_and_entities(hass: HomeAssistant, aioclient
     payload = aioclient_mock.mock_calls[-1][2]
     assert payload["site_id"] == "Maison Test"
     assert payload["agent"]["name"] == "ecopulse_connect"
-    assert payload["agent"]["version"] == "0.1.0"
+    assert payload["agent"]["version"] == "0.1.1"
     assert payload["remote_access"]["external_url"] == "https://maison.duckdns.org"
     assert payload["pending_updates"] == ["update.demo"]
     assert payload["updates"][0]["features"] == 11
@@ -84,6 +84,18 @@ async def test_setup_sends_heartbeat_and_entities(hass: HomeAssistant, aioclient
     assert diag["entry"][CONF_TOKEN] == "**REDACTED**"
 
     assert await hass.config_entries.async_unload(entry.entry_id)
+
+
+async def test_legacy_url_migrated(hass: HomeAssistant, aioclient_mock) -> None:
+    aioclient_mock.post(URL, json={"status": "ok", "command": None})
+    entry = MockConfigEntry(
+        domain=DOMAIN, data={CONF_URL: "https://wiztech-ha.duckdns.org/telemetry/heartbeat", CONF_TOKEN: "t"}, unique_id=DOMAIN
+    )
+    entry.add_to_hass(hass)
+    assert await hass.config_entries.async_setup(entry.entry_id)
+    await hass.async_block_till_done(wait_background_tasks=True)
+    assert entry.data[CONF_URL] == URL
+    assert str(aioclient_mock.mock_calls[-1][1]) == URL
 
 
 async def test_server_down(hass: HomeAssistant, aioclient_mock) -> None:

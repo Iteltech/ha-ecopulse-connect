@@ -9,7 +9,9 @@ NAME = "EcoPulse Connect"
 
 CONF_URL = "url"
 CONF_TOKEN = "token"
-DEFAULT_URL = "https://wiztech-ha.duckdns.org/telemetry/heartbeat"
+DEFAULT_URL = "https://ecopulse.duckdns.org/telemetry/heartbeat"
+# Ancienne adresse du serveur : remplacée automatiquement au chargement (0.1.1)
+LEGACY_URLS = ("https://wiztech-ha.duckdns.org/telemetry/heartbeat",)
 
 HEARTBEAT_INTERVAL = timedelta(minutes=15)
 HTTP_TIMEOUT = 30

@@ -8,7 +8,7 @@ from homeassistant.core import CoreState, Event, HomeAssistant
 from homeassistant.loader import async_get_integration
 
 from .agent import EcoPulseAgent
-from .const import CONF_TOKEN, CONF_URL
+from .const import CONF_TOKEN, CONF_URL, DEFAULT_URL, LEGACY_URLS
 
 PLATFORMS = [Platform.BINARY_SENSOR, Platform.BUTTON, Platform.SENSOR]
 
@@ -16,6 +16,9 @@ type EcoPulseConfigEntry = ConfigEntry[EcoPulseAgent]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: EcoPulseConfigEntry) -> bool:
+    if entry.data[CONF_URL] in LEGACY_URLS:
+        # Changement de nom du serveur : bascule sans ressaisir le token
+        hass.config_entries.async_update_entry(entry, data={**entry.data, CONF_URL: DEFAULT_URL})
     integration = await async_get_integration(hass, entry.domain)
     agent = EcoPulseAgent(
         hass,
