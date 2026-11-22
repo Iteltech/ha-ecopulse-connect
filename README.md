@@ -45,7 +45,7 @@ pytest -q
 
 | `type` | Usage | Réponse |
 |---|---|---|
-| *(absent)* | télémétrie | `{"status":"ok","command":{…}|null}` |
+| *(absent)* | télémétrie | `{"status":"ok","command":…}` (ordre ou `null`) |
 | `result` | résultat d'un ordre : `id`, `status` (`started`/`done`/`failed`/`rejected`), `message` | `{"status":"ok"}` |
 | `probe` | test du token pendant la configuration | `{"status":"ok"}` |
 
