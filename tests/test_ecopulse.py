@@ -66,7 +66,7 @@ async def test_setup_sends_heartbeat_and_entities(hass: HomeAssistant, aioclient
     payload = aioclient_mock.mock_calls[-1][2]
     assert payload["site_id"] == "Maison Test"
     assert payload["agent"]["name"] == "ecopulse_connect"
-    assert payload["agent"]["version"] == "0.1.1"
+    assert payload["agent"]["version"] == "0.1.2"
     assert payload["remote_access"]["external_url"] == "https://maison.duckdns.org"
     assert payload["pending_updates"] == ["update.demo"]
     assert payload["updates"][0]["features"] == 11

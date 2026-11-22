@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="custom_components/ecopulse_connect/brand/dark_logo@2x.png">
+    <img src="custom_components/ecopulse_connect/brand/logo@2x.png" alt="EcoPulse" width="420">
+  </picture>
+</p>
+
 # EcoPulse Connect
 
 Intégration Home Assistant du service de maintenance **EcoPulse**. Elle remplace le package YAML `fleet_telemetry.yaml` :
